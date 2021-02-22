@@ -104,7 +104,7 @@
               <div class="col-lg-6">
                 <ul>
                   <li><i class="icofont-rounded-right"></i> <strong>Birthday:</strong> 11 March 1995</li>
-                  <li><i class="icofont-rounded-right"></i> <strong>Website:</strong> www.example.com</li>
+                  <li><i class="icofont-rounded-right"></i> <strong>Website:</strong> <a href="https://kanikamadaan11.github.io/portfolio/">https://kanikamadaan11.github.io/portfolio/ </a> </li>
                   <li><i class="icofont-rounded-right"></i> <strong>Phone:</strong> +91 9034320186</li>
                   <li><i class="icofont-rounded-right"></i> <strong>City:</strong> Kalanaur(Rohtak), Haryana</li>
                 </ul>
@@ -449,7 +449,7 @@
                 <div class="phone">
                   <i class="icofont-brand-whatsapp"></i>
                   <h4>Instant Message:</h4>
-                  <p> <a href="tel:+91-9034320186"> (+91) 9034320186</a></p>
+                  <p> <a href="tel:+91-9034320186" id="WAButton"> (+91) 9034320186</a></p>
                 </div>
               </div>
             </div>
@@ -491,6 +491,21 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script type="text/javascript">  
+    $(function () {
+            $('#WAButton').floatingWhatsApp({
+                phone: 'WHATSAPP-PHONE-NUMBER', //WhatsApp Business phone number
+                headerTitle: 'Chat with us on WhatsApp!', //Popup Title
+                popupMessage: 'Hello, how can we help you?', //Popup Message
+                showPopup: true, //Enables popup display
+                buttonImage: '<img src="whatsapp.svg" />', //Button Image
+                //headerColor: 'crimson', //Custom header color
+                //backgroundColor: 'crimson', //Custom background button color
+                position: "right" //Position: left | right
+ 
+            });
+        });
+ </script> 
 </body>
 
 </html>
