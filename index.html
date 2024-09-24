@@ -86,7 +86,7 @@
           <h2>About</h2>
           <!-- <h2>About</h2> -->
           
-          <p>Senior UI developer with 4+ years of experience In Web Design, Mobile Application Design and UI Development. I'm focused on solving problems by creating meaningful experience through design. I love to take new challenges and i'm able to take ideas from concept to wireframe to prototype to HTML Development. Proficient with Adobe Photshop, HTML, CSS, Bootstrap, JS , Wordpress, Ionic Framework, Anglar Mateiral Design.</p>
+          <p>Senior UI developer with <span id="experience"></span> years of experience In Web Design, Mobile Application Design and UI Development. I'm focused on solving problems by creating meaningful experience through design. I love to take new challenges and i'm able to take ideas from concept to wireframe to prototype to HTML Development. Proficient with Adobe Photshop, HTML, CSS, Bootstrap, JS , Wordpress, Ionic Framework and React JS</p>
            
         </div>
 
@@ -466,7 +466,7 @@
   <footer id="footer">
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>2024</span></strong>
+        &copy; Copyright <strong><span id="year"></span></strong>
       </div>
       <div class="credits">
         Designed by <a href="https://www.linkedin.com/in/kanika-madaan-aab912187/">Kanika Madaan</a>
@@ -505,6 +505,44 @@
  
             });
         });
+// Year increment
+            const yearDisplay = document.getElementById('year');
+
+        // Function to update the displayed year
+        function updateYear() {
+            const currentYear = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', year: 'numeric' });
+            yearDisplay.textContent = currentYear;
+        }
+
+        // Initial display
+        updateYear();
+
+        // Update the year every year (in milliseconds)
+        setInterval(updateYear, 1000 * 60 * 60 * 24); // Check daily (24 hours)
+
+// Experience increment
+const experienceDisplay = document.getElementById('experience');
+        let currentExperience = 7.6; // Starting years of experience
+        const startYear = new Date().getFullYear(); // Current year
+
+        // Function to update experience
+        function updateExperience() {
+            const currentYear = new Date().getFullYear();
+            const yearsPassed = currentYear - startYear;
+            currentExperience = (7.6 + yearsPassed).toFixed(1); // Update experience
+            experienceDisplay.textContent = `Years of Experience: ${currentExperience}`;
+        }
+
+        // Initial display
+        updateExperience();
+
+        // Update experience every year
+        setInterval(() => {
+            const now = new Date();
+            if (now.getMonth() === 0 && now.getDate() === 1) { // Check on Jan 1st
+                updateExperience();
+            }
+        }, 1000 * 60 * 60 * 24); // Check daily
  </script> 
 </body>
 
