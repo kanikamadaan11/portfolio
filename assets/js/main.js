@@ -14,11 +14,39 @@
     new Typed('.typed', {
       strings: typed_strings,
       loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
+      typeSpeed: 80,
+      backSpeed: 45,
+      backDelay: 1800,
+      smartBackspace: true
     });
   }
+
+  // CTA smooth scroll (hero buttons)
+  $(document).on('click', '.hero-cta a', function(e) {
+    var href = $(this).attr('href');
+    if (href && href.startsWith('#')) {
+      e.preventDefault();
+      var target = $(href);
+      if (target.length) {
+        $('html, body').animate({ scrollTop: target.offset().top }, 900, 'easeInOutExpo');
+      }
+    }
+  });
+
+  // Intersection Observer for subtle fade-in-up animations
+  function initFadeInObserver() {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in-up').forEach(function(el) { observer.observe(el); });
+  }
+  if ('IntersectionObserver' in window) { initFadeInObserver(); } else { $('.fade-in-up').addClass('in-view'); }
 
   // Smooth scroll for the navigation menu and links with .scrollto classes
   $(document).on('click', '.nav-menu a, .scrollto', function(e) {
@@ -131,9 +159,11 @@
 
   // Porfolio isotope and filter
   $(window).on('load', function() {
-    var portfolioIsotope = $('.portfolio-container').isotope({
+    var $portfolioContainer = $('.portfolio-container');
+    var portfolioIsotope = $portfolioContainer.isotope({
       itemSelector: '.portfolio-item',
-      layoutMode: 'fitRows'
+      layoutMode: 'fitRows',
+      transitionDuration: '0.6s'
     });
 
     $('#portfolio-flters li').on('click', function() {
@@ -147,9 +177,11 @@
     });
 
     // Initiate venobox (lightbox feature used in portofilo)
-    $(document).ready(function() {
-      $('.venobox').venobox();
-    });
+    $('.venobox').venobox({ spinner: 'cube-grid' });
+
+    // Make venobox links keyboard focusable and triggerable
+    $('.portfolio-wrap a').attr('tabindex', '0');
+    $('.portfolio-wrap a').on('keypress', function(e) { if (e.key === 'Enter') { $(this).trigger('click'); } });
   });
 
   // Testimonials carousel (uses the Owl Carousel library)
